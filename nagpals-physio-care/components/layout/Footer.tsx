@@ -36,6 +36,7 @@ export default function Footer() {
                 alt="Nagpal's Physio Care"
                 width={40}
                 height={40}
+                style={{ width: 40, height: 40 }}
                 className="rounded-sm object-contain"
               />
               <span className="font-heading text-base text-ivory leading-tight">

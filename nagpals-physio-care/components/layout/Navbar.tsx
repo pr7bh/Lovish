@@ -43,6 +43,7 @@ export default function Navbar() {
             alt="Nagpal's Physio Care"
             width={44}
             height={44}
+            style={{ width: 44, height: 44 }}
             className="rounded-sm object-contain"
             priority
           />

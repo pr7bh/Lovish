@@ -85,7 +85,7 @@ export default function Hero() {
           >
             <div className="relative">
               {/* Main image box */}
-              <div className="relative aspect-[4/5] bg-beige rounded-sm overflow-hidden border border-soft-beige">
+              <div className="relative aspect-4/5 bg-beige rounded-sm overflow-hidden border border-soft-beige">
                 <Image
                   src="/images/hero-physio.jpg"
                   alt="Physiotherapist treating a patient — Nagpal's Physio Care"
@@ -95,14 +95,14 @@ export default function Hero() {
                   sizes="(max-width: 1024px) 0px, 500px"
                 />
                 {/* Subtle overlay for text legibility on floating elements */}
-                <div className="absolute inset-0 bg-gradient-to-t from-rich-black/20 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-rich-black/20 to-transparent" />
 
                 {/* Gold accent line */}
                 <div className="absolute bottom-0 inset-x-0 h-1 bg-gold" />
               </div>
 
               {/* Floating card */}
-              <div className="absolute -bottom-5 -left-6 bg-white border border-beige rounded-sm px-5 py-4 shadow-lg max-w-[180px]">
+              <div className="absolute -bottom-5 -left-6 bg-white border border-beige rounded-sm px-5 py-4 shadow-lg max-w-45">
                 <p className="text-xs text-muted-text font-sans uppercase tracking-widest mb-1">
                   Speciality
                 </p>

@@ -151,6 +151,7 @@ export default function Testimonials() {
   const maxIndex = Math.max(0, testimonials.length - perView);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setCurrent((c) => Math.min(c, maxIndex));
   }, [maxIndex]);
 
@@ -205,7 +206,7 @@ export default function Testimonials() {
                 <div
                   key={i}
                   style={{ width: `${100 / perView}%` }}
-                  className="flex-shrink-0 px-2 sm:px-3"
+                  className="shrink-0 px-2 sm:px-3"
                 >
                   <figure className="h-full flex flex-col p-6 rounded-sm bg-warm-white border border-beige select-none">
                     {/* Header row */}

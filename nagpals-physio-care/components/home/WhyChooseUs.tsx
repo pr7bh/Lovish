@@ -82,7 +82,7 @@ export default function WhyChooseUs() {
             const Icon = r.icon;
             return (
               <AnimateSection key={r.title} delay={i * 0.07}>
-                <div className="group flex flex-col gap-4 p-8 bg-rich-black hover:bg-ivory/[0.04] transition-colors duration-300 h-full">
+                <div className="group flex flex-col gap-4 p-8 bg-rich-black hover:bg-ivory/4 transition-colors duration-300 h-full">
                   <div className="w-10 h-10 rounded-sm bg-gold/10 flex items-center justify-center shrink-0 group-hover:bg-gold/20 transition-colors duration-300">
                     <Icon size={18} className="text-gold" />
                   </div>

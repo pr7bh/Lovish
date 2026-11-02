@@ -27,7 +27,7 @@ export default function Contact() {
 
               {/* Map */}
               <div className="mt-10 overflow-hidden rounded-sm border border-soft-beige bg-beige">
-                <div className="relative aspect-[4/3] w-full">
+                <div className="relative aspect-4/3 w-full">
                   <iframe
                     title="Nagpal's Physio Care Location"
                     src="https://www.google.com/maps?q=Nagpal%27s+Physio+Care,+717+Mahavir+Colony,+East+Bhatia+Nagar,+Yamuna+Nagar,+Haryana+135001&output=embed"
