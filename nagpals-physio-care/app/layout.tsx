@@ -16,6 +16,7 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://nagpalsphysiocare.com"),
   title: {
     default: "Nagpal's Physio Care — Pain Relief. Rehabilitation. Mobility Care.",
     template: "%s | Nagpal's Physio Care",

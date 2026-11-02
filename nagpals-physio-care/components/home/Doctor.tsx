@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { SectionHeader } from "@/components/shared/SectionHeader";
 import { AnimateSection } from "@/components/shared/AnimateSection";
 import { Award, GraduationCap, Stethoscope } from "lucide-react";
 import Link from "next/link";

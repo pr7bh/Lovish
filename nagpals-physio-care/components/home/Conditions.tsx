@@ -64,12 +64,12 @@ export default function Conditions() {
 
         {/* Conditions grid — gap-px on ivory/[0.08] creates hairline cell borders */}
         <AnimateSection delay={0.1}>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-ivory/[0.08]">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-ivory/8">
             {conditions.map((condition, i) => (
               <Link
                 key={condition.href}
                 href={condition.href}
-                className="group flex items-center gap-3 px-5 py-[18px] bg-rich-black hover:bg-ivory/[0.05] transition-colors duration-200"
+                className="group flex items-center gap-3 px-5 py-4.5 bg-rich-black hover:bg-ivory/5 transition-colors duration-200"
               >
                 <span className="font-sans text-[11px] tabular-nums text-gold/30 group-hover:text-gold/60 transition-colors duration-200 shrink-0 w-5">
                   {String(i + 1).padStart(2, "0")}

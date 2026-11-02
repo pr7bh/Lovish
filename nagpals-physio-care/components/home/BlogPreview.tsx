@@ -35,7 +35,7 @@ export default function BlogPreview() {
           {posts.map((post, i) => (
             <AnimateSection key={post.slug} delay={i * 0.1}>
               <article className="group h-full flex flex-col rounded-sm border border-beige bg-ivory overflow-hidden hover:border-gold/40 hover:shadow-md transition-all duration-300">
-                <Link href={`/blog/${post.slug}`} className="block aspect-[16/9] bg-beige relative overflow-hidden">
+                <Link href={`/blog/${post.slug}`} className="block aspect-video bg-beige relative overflow-hidden">
                   <Image
                     src={post.image}
                     alt={post.imageAlt}
