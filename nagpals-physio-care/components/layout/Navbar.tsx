@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { Menu, X, Phone, MessageCircle } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { cn } from "cn";
@@ -18,6 +19,7 @@ const navLinks = [
 ];
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -81,15 +83,22 @@ export default function Navbar() {
 
           {/* Desktop links */}
           <div className="hidden md:flex items-center gap-7">
-            {navLinks.slice(1).map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-sm font-sans text-rich-black/70 hover:text-gold transition-colors duration-200"
-              >
-                {link.label}
-              </Link>
-            ))}
+            {navLinks.slice(1).map((link) => {
+              const isActive = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  aria-current={isActive ? "page" : undefined}
+                  className={cn(
+                    "text-sm font-sans transition-colors duration-200",
+                    isActive ? "text-gold" : "text-rich-black/70 hover:text-gold"
+                  )}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
           </div>
 
           {/* Desktop CTA + mobile hamburger */}
@@ -109,6 +118,7 @@ export default function Navbar() {
               )}
               aria-label={menuOpen ? "Close menu" : "Open menu"}
               aria-expanded={menuOpen}
+              aria-controls="mobile-nav"
             >
               <AnimatePresence mode="wait" initial={false}>
                 {menuOpen ? (
@@ -144,6 +154,7 @@ export default function Navbar() {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
+            id="mobile-nav"
             key="mobile-menu"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -154,26 +165,36 @@ export default function Navbar() {
             {/* Nav links — vertically centered */}
             <div className="flex-1 flex flex-col justify-center px-8 pt-16">
               <nav className="flex flex-col">
-                {navLinks.map((link, i) => (
-                  <motion.div
-                    key={link.href}
-                    initial={{ opacity: 0, x: -32 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -16 }}
-                    transition={{ duration: 0.35, delay: 0.08 + i * 0.07, ease: [0.21, 0.47, 0.32, 0.98] }}
-                  >
-                    <Link
-                      href={link.href}
-                      onClick={close}
-                      className="group flex items-center gap-5 py-4 border-b border-ivory/8 last:border-0"
+                {navLinks.map((link, i) => {
+                  const isActive = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
+                  return (
+                    <motion.div
+                      key={link.href}
+                      initial={{ opacity: 0, x: -32 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -16 }}
+                      transition={{ duration: 0.35, delay: 0.08 + i * 0.07, ease: [0.21, 0.47, 0.32, 0.98] }}
                     >
-                      <span className="w-0 group-hover:w-8 h-px bg-gold transition-all duration-300 shrink-0" />
-                      <span className="font-heading text-[2.5rem] leading-none text-ivory/70 group-hover:text-ivory transition-colors duration-200">
-                        {link.label}
-                      </span>
-                    </Link>
-                  </motion.div>
-                ))}
+                      <Link
+                        href={link.href}
+                        onClick={close}
+                        aria-current={isActive ? "page" : undefined}
+                        className="group flex items-center gap-5 py-4 border-b border-ivory/8 last:border-0"
+                      >
+                        <span className={cn(
+                          "h-px bg-gold transition-all duration-300 shrink-0",
+                          isActive ? "w-8" : "w-0 group-hover:w-8"
+                        )} />
+                        <span className={cn(
+                          "font-heading text-[2.5rem] leading-none transition-colors duration-200",
+                          isActive ? "text-gold" : "text-ivory/70 group-hover:text-ivory"
+                        )}>
+                          {link.label}
+                        </span>
+                      </Link>
+                    </motion.div>
+                  );
+                })}
               </nav>
             </div>
 

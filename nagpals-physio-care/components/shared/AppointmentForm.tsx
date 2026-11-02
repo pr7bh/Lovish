@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, type FormEvent } from "react";
+import { useState, useEffect, useRef, type FormEvent } from "react";
 import { ArrowRight, CheckCircle2, Copy, Check, AlertCircle } from "lucide-react";
 import { cn } from "cn";
 import { clinic } from "@/lib/clinic-config";
@@ -61,8 +61,6 @@ interface Errors {
 type CopyState = "idle" | "copied" | "failed";
 type EmailStatus = "sending" | "sent" | "failed";
 
-const today = new Date().toISOString().split("T")[0];
-
 function buildWhatsAppMessage(f: FormState): string {
   const lines: (string | null)[] = [
     `Hello Dr. Lovish Nagpal,`,
@@ -98,6 +96,8 @@ const EMPTY_FORM: FormState = {
 };
 
 export function AppointmentForm() {
+  const [today, setToday] = useState("");
+  useEffect(() => { setToday(new Date().toISOString().split("T")[0]); }, []);
   const [form, setForm] = useState<FormState>(EMPTY_FORM);
   const [errors, setErrors] = useState<Errors>({});
   const [submitting, setSubmitting] = useState(false);
@@ -296,48 +296,55 @@ export function AppointmentForm() {
       {/* Name + Mobile */}
       <div className="grid sm:grid-cols-2 gap-5">
         <div>
-          <label className="block text-xs font-sans font-semibold text-muted-text uppercase tracking-widest mb-2">
-            Full Name <span className="text-gold">*</span>
+          <label htmlFor="appt-name" className="block text-xs font-sans font-semibold text-muted-text uppercase tracking-widest mb-2">
+            Full Name <span className="text-gold" aria-hidden="true">*</span>
           </label>
           <input
+            id="appt-name"
             type="text"
             autoComplete="name"
             placeholder="e.g. Rahul Sharma"
+            aria-required="true"
+            aria-describedby={errors.name ? "appt-name-error" : undefined}
             value={form.name}
             onChange={(e) => setField("name", e.target.value)}
             className={cn(inputBase, errors.name ? inputError : inputNormal)}
           />
           {errors.name && (
-            <p className="mt-1.5 text-xs text-red-500">{errors.name}</p>
+            <p id="appt-name-error" className="mt-1.5 text-xs text-red-500" role="alert">{errors.name}</p>
           )}
         </div>
         <div>
-          <label className="block text-xs font-sans font-semibold text-muted-text uppercase tracking-widest mb-2">
-            Mobile Number <span className="text-gold">*</span>
+          <label htmlFor="appt-mobile" className="block text-xs font-sans font-semibold text-muted-text uppercase tracking-widest mb-2">
+            Mobile Number <span className="text-gold" aria-hidden="true">*</span>
           </label>
           <input
+            id="appt-mobile"
             type="tel"
             autoComplete="tel"
             placeholder="e.g. +91 98765 43210"
+            aria-required="true"
+            aria-describedby={errors.mobile ? "appt-mobile-error" : undefined}
             value={form.mobile}
             onChange={(e) => setField("mobile", e.target.value)}
             className={cn(inputBase, errors.mobile ? inputError : inputNormal)}
           />
           {errors.mobile && (
-            <p className="mt-1.5 text-xs text-red-500">{errors.mobile}</p>
+            <p id="appt-mobile-error" className="mt-1.5 text-xs text-red-500" role="alert">{errors.mobile}</p>
           )}
         </div>
       </div>
 
       {/* Email */}
       <div>
-        <label className="block text-xs font-sans font-semibold text-muted-text uppercase tracking-widest mb-2">
+        <label htmlFor="appt-email" className="block text-xs font-sans font-semibold text-muted-text uppercase tracking-widest mb-2">
           Email{" "}
           <span className="text-muted-text/50 normal-case font-normal tracking-normal">
             (optional)
           </span>
         </label>
         <input
+          id="appt-email"
           type="email"
           autoComplete="email"
           placeholder="e.g. rahul@email.com"
@@ -349,11 +356,14 @@ export function AppointmentForm() {
 
       {/* Service */}
       <div>
-        <label className="block text-xs font-sans font-semibold text-muted-text uppercase tracking-widest mb-2">
-          Service Required <span className="text-gold">*</span>
+        <label htmlFor="appt-service" className="block text-xs font-sans font-semibold text-muted-text uppercase tracking-widest mb-2">
+          Service Required <span className="text-gold" aria-hidden="true">*</span>
         </label>
         <select
+          id="appt-service"
           value={form.service}
+          aria-required="true"
+          aria-describedby={errors.service ? "appt-service-error" : undefined}
           onChange={(e) => setField("service", e.target.value)}
           className={cn(
             inputBase,
@@ -371,19 +381,22 @@ export function AppointmentForm() {
           ))}
         </select>
         {errors.service && (
-          <p className="mt-1.5 text-xs text-red-500">{errors.service}</p>
+          <p id="appt-service-error" className="mt-1.5 text-xs text-red-500" role="alert">{errors.service}</p>
         )}
       </div>
 
       {/* Date + Time */}
       <div className="grid sm:grid-cols-2 gap-5">
         <div>
-          <label className="block text-xs font-sans font-semibold text-muted-text uppercase tracking-widest mb-2">
-            Preferred Date <span className="text-gold">*</span>
+          <label htmlFor="appt-date" className="block text-xs font-sans font-semibold text-muted-text uppercase tracking-widest mb-2">
+            Preferred Date <span className="text-gold" aria-hidden="true">*</span>
           </label>
           <input
+            id="appt-date"
             type="date"
             min={today}
+            aria-required="true"
+            aria-describedby={errors.date ? "appt-date-error" : undefined}
             value={form.date}
             onChange={(e) => setField("date", e.target.value)}
             className={cn(
@@ -393,15 +406,18 @@ export function AppointmentForm() {
             )}
           />
           {errors.date && (
-            <p className="mt-1.5 text-xs text-red-500">{errors.date}</p>
+            <p id="appt-date-error" className="mt-1.5 text-xs text-red-500" role="alert">{errors.date}</p>
           )}
         </div>
         <div>
-          <label className="block text-xs font-sans font-semibold text-muted-text uppercase tracking-widest mb-2">
-            Preferred Time <span className="text-gold">*</span>
+          <label htmlFor="appt-time" className="block text-xs font-sans font-semibold text-muted-text uppercase tracking-widest mb-2">
+            Preferred Time <span className="text-gold" aria-hidden="true">*</span>
           </label>
           <select
+            id="appt-time"
             value={form.time}
+            aria-required="true"
+            aria-describedby={errors.time ? "appt-time-error" : undefined}
             onChange={(e) => setField("time", e.target.value)}
             className={cn(
               inputBase,
@@ -419,20 +435,21 @@ export function AppointmentForm() {
             ))}
           </select>
           {errors.time && (
-            <p className="mt-1.5 text-xs text-red-500">{errors.time}</p>
+            <p id="appt-time-error" className="mt-1.5 text-xs text-red-500" role="alert">{errors.time}</p>
           )}
         </div>
       </div>
 
       {/* Message */}
       <div>
-        <label className="block text-xs font-sans font-semibold text-muted-text uppercase tracking-widest mb-2">
+        <label htmlFor="appt-message" className="block text-xs font-sans font-semibold text-muted-text uppercase tracking-widest mb-2">
           Additional Message{" "}
           <span className="text-muted-text/50 normal-case font-normal tracking-normal">
             (optional)
           </span>
         </label>
         <textarea
+          id="appt-message"
           rows={3}
           placeholder="Describe your concern or any additional details…"
           value={form.message}

@@ -37,7 +37,7 @@ export default async function BlogArticlePage({
   if (!post) notFound();
 
   const relatedPosts = getRelatedPosts(post.relatedSlugs);
-  const formattedDate = new Date(post.date).toLocaleDateString("en-CA", {
+  const formattedDate = new Date(post.date).toLocaleDateString("en-IN", {
     year: "numeric",
     month: "long",
     day: "numeric",

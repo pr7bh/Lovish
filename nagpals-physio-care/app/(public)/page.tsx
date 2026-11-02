@@ -9,9 +9,11 @@ import BlogPreview from "@/components/home/BlogPreview";
 import Contact from "@/components/home/Contact";
 
 export const metadata: Metadata = {
-  title: "Home",
+  title: {
+    absolute: "Nagpal's Physio Care — Pain Relief. Rehabilitation. Mobility Care.",
+  },
   description:
-    "Nagpal's Physio Care — Expert physiotherapy and rehabilitation by Dr. Lovish Nagpal. Pain relief, sports rehab, and mobility care.",
+    "Expert physiotherapy and rehabilitation in Yamuna Nagar by Dr. Lovish Nagpal. Personalized treatment for pain relief, sports rehab, post-surgical recovery, and mobility care.",
 };
 
 export default function HomePage() {
