@@ -17,8 +17,8 @@ export default function Contact() {
         </AnimateSection>
 
         <div className="mt-16 grid lg:grid-cols-2 gap-12 lg:gap-20">
-          {/* Contact info + map */}
-          <AnimateSection from="left">
+          {/* Contact info + map (shown second on mobile) */}
+          <AnimateSection from="left" className="order-2 lg:order-1">
             <div>
               <h3 className="font-heading text-2xl text-rich-black mb-8">
                 Clinic Information
@@ -61,8 +61,8 @@ export default function Contact() {
             </div>
           </AnimateSection>
 
-          {/* Appointment form */}
-          <AnimateSection from="right">
+          {/* Appointment form (shown first on mobile) */}
+          <AnimateSection from="right" className="order-1 lg:order-2">
             <div>
               <h3 className="font-heading text-2xl text-rich-black mb-3">
                 Request an Appointment

@@ -33,8 +33,8 @@ export default function ContactPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
 
-          {/* Left — Clinic info + map */}
-          <AnimateSection from="left">
+          {/* Left — Clinic info + map (shown second on mobile) */}
+          <AnimateSection from="left" className="order-2 lg:order-1">
             <div>
               <h2 className="font-heading text-3xl text-rich-black mb-8">
                 Clinic Information
@@ -77,8 +77,8 @@ export default function ContactPage() {
             </div>
           </AnimateSection>
 
-          {/* Right — Appointment form */}
-          <AnimateSection from="right">
+          {/* Right — Appointment form (shown first on mobile) */}
+          <AnimateSection from="right" className="order-1 lg:order-2">
             <div>
               <div className="mb-8">
                 <h2 className="font-heading text-3xl text-rich-black mb-3">

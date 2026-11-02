@@ -20,7 +20,7 @@ export function AppointmentCTA({
               Get Started
             </span>
           </div>
-          <h2 className="font-heading text-4xl lg:text-5xl text-rich-black leading-tight tracking-tight mb-5">
+          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl text-rich-black leading-tight tracking-tight mb-5">
             {heading}
           </h2>
           <p className="text-base text-muted-text leading-relaxed mb-10">
@@ -29,7 +29,7 @@ export function AppointmentCTA({
           <div className="flex flex-col sm:flex-row gap-3">
             <Link
               href="/contact"
-              className="group inline-flex h-12 items-center gap-2 px-8 bg-gold text-white text-sm font-sans font-medium rounded-sm hover:bg-gold-light transition-all duration-200"
+              className="group inline-flex h-12 items-center justify-center gap-2 px-8 bg-gold text-white text-sm font-sans font-medium rounded-sm hover:bg-gold-light transition-all duration-200"
             >
               Book an Appointment
               <ArrowRight
@@ -39,7 +39,7 @@ export function AppointmentCTA({
             </Link>
             <Link
               href="/services"
-              className="inline-flex h-12 items-center px-8 border border-rich-black/20 text-rich-black text-sm font-sans font-medium rounded-sm hover:border-gold hover:text-gold transition-colors duration-200"
+              className="inline-flex h-12 items-center justify-center px-8 border border-rich-black/20 text-rich-black text-sm font-sans font-medium rounded-sm hover:border-gold hover:text-gold transition-colors duration-200"
             >
               Explore Services
             </Link>

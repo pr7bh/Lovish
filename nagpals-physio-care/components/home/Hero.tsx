@@ -38,7 +38,7 @@ export default function Hero() {
 
             <motion.h1
               {...fade(0.1)}
-              className="font-heading text-5xl sm:text-6xl lg:text-[5.5rem] text-rich-black leading-[1.02] tracking-tight mb-7"
+              className="font-heading text-[2.6rem] sm:text-5xl lg:text-[5.5rem] text-rich-black leading-[1.05] tracking-tight mb-7"
             >
               Move better.
               <br />
@@ -55,11 +55,11 @@ export default function Hero() {
 
             <motion.div
               {...fade(0.3)}
-              className="flex flex-col sm:flex-row items-start sm:items-center gap-4"
+              className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4"
             >
               <Link
                 href="#contact"
-                className="group inline-flex h-12 items-center gap-2 px-8 bg-gold text-white text-sm font-sans font-medium rounded-sm hover:bg-gold-light transition-all duration-200"
+                className="group inline-flex h-12 items-center justify-center gap-2 px-8 bg-gold text-white text-sm font-sans font-medium rounded-sm hover:bg-gold-light transition-all duration-200"
               >
                 Book an Appointment
                 <ArrowRight
@@ -69,7 +69,7 @@ export default function Hero() {
               </Link>
               <Link
                 href="#services"
-                className="inline-flex h-12 items-center px-8 border border-rich-black/20 text-rich-black text-sm font-sans font-medium rounded-sm hover:border-gold hover:text-gold transition-colors duration-200"
+                className="inline-flex h-12 items-center justify-center px-8 border border-rich-black/20 text-rich-black text-sm font-sans font-medium rounded-sm hover:border-gold hover:text-gold transition-colors duration-200"
               >
                 Explore Our Services
               </Link>
