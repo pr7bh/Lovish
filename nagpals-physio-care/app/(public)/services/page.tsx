@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { PageHero } from "@/components/shared/PageHero";
 import { AnimateSection } from "@/components/shared/AnimateSection";
@@ -35,20 +36,34 @@ export default function ServicesPage() {
               <AnimateSection key={service.slug} delay={i * 0.06}>
                 <Link
                   href={`/services/${service.slug}`}
-                  className="group flex flex-col h-full p-7 rounded-sm border border-beige bg-ivory hover:bg-warm-white hover:border-gold/40 hover:shadow-md transition-all duration-300"
+                  className="group flex flex-col h-full rounded-sm border border-beige bg-ivory hover:border-gold/40 hover:shadow-md overflow-hidden transition-all duration-300"
                 >
-                  <div className="w-10 h-10 rounded-sm bg-gold/10 flex items-center justify-center mb-5 group-hover:bg-gold/20 transition-colors duration-300">
-                    <Icon size={18} className="text-gold" />
+                  {/* Image */}
+                  <div className="relative aspect-[16/9] overflow-hidden">
+                    <Image
+                      src={service.image}
+                      alt={service.imageAlt}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-rich-black/30 to-transparent" />
+                    <div className="absolute bottom-3 left-3 w-8 h-8 rounded-sm bg-ivory/90 flex items-center justify-center">
+                      <Icon size={15} className="text-gold" />
+                    </div>
                   </div>
-                  <h2 className="font-heading text-xl text-rich-black mb-3 group-hover:text-gold transition-colors duration-200">
-                    {service.title}
-                  </h2>
-                  <p className="text-sm text-muted-text leading-relaxed flex-1 mb-5">
-                    {service.shortDescription}
-                  </p>
-                  <span className="flex items-center gap-1.5 text-sm font-sans text-gold group-hover:gap-2.5 transition-all duration-200">
-                    Learn more <ArrowRight size={14} />
-                  </span>
+                  {/* Content */}
+                  <div className="flex flex-col flex-1 p-6">
+                    <h2 className="font-heading text-xl text-rich-black mb-2 group-hover:text-gold transition-colors duration-200">
+                      {service.title}
+                    </h2>
+                    <p className="text-sm text-muted-text leading-relaxed flex-1 mb-4">
+                      {service.shortDescription}
+                    </p>
+                    <span className="flex items-center gap-1.5 text-sm font-sans text-gold group-hover:gap-2.5 transition-all duration-200">
+                      Learn more <ArrowRight size={14} />
+                    </span>
+                  </div>
                 </Link>
               </AnimateSection>
             );

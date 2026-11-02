@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Check, ArrowRight } from "lucide-react";
 import { AnimateSection } from "@/components/shared/AnimateSection";
@@ -30,6 +31,21 @@ export function ServiceDetail({ service, relatedServices }: Props) {
         <div className="grid lg:grid-cols-3 gap-12 lg:gap-16">
           {/* Primary content */}
           <div className="lg:col-span-2 space-y-12">
+            {/* Hero image */}
+            <AnimateSection>
+              <div className="relative aspect-[16/9] rounded-sm overflow-hidden border border-beige">
+                <Image
+                  src={service.image}
+                  alt={service.imageAlt}
+                  fill
+                  className="object-cover"
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 66vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-rich-black/20 to-transparent" />
+              </div>
+            </AnimateSection>
+
             {/* Introduction */}
             <AnimateSection>
               <div>

@@ -8,6 +8,15 @@ import {
   Target,
   Wind,
   Wrench,
+  Zap,
+  Dumbbell,
+  Hand,
+  RotateCcw,
+  TrendingUp,
+  ClipboardList,
+  Layers,
+  Bandage,
+  Move,
 } from "lucide-react";
 
 export interface ServiceData {
@@ -20,6 +29,8 @@ export interface ServiceData {
   conditionsTreated: string[];
   benefits: string[];
   whenToConsult: string[];
+  image: string;
+  imageAlt: string;
   relatedSlugs: string[];
 }
 
@@ -63,6 +74,8 @@ export const services: ServiceData[] = [
       "You experience a recurring injury to the same area.",
       "You are preparing to return to sport following injury or surgery.",
     ],
+    image: "/images/service-sports.jpg",
+    imageAlt: "Sports physiotherapy session with athlete rehabilitation",
     relatedSlugs: ["orthopedic-physiotherapy", "dry-needling", "iastm"],
   },
   {
@@ -104,6 +117,8 @@ export const services: ServiceData[] = [
       "Pain has persisted beyond what you would expect from a minor injury.",
       "Your day-to-day activities or sleep are significantly affected by musculoskeletal pain.",
     ],
+    image: "/images/service-ortho.jpg",
+    imageAlt: "Orthopedic physiotherapy assessment of a patient's joint",
     relatedSlugs: ["sports-physiotherapy", "iastm", "dry-needling"],
   },
   {
@@ -144,6 +159,8 @@ export const services: ServiceData[] = [
       "You experience unexplained falls, dizziness, or coordination difficulties.",
       "A neurologist or specialist has recommended physiotherapy.",
     ],
+    image: "/images/service-neuro.jpg",
+    imageAlt: "Physiotherapist assisting patient with neurological rehabilitation",
     relatedSlugs: ["orthopedic-physiotherapy", "pediatric-rehabilitation"],
   },
   {
@@ -183,6 +200,8 @@ export const services: ServiceData[] = [
       "You are pregnant and experiencing low back, pelvic, or hip pain.",
       "You are post-natal and looking for guidance on safe return to exercise.",
     ],
+    image: "/images/service-womens-health.jpg",
+    imageAlt: "Women's health physiotherapy and rehabilitation session",
     relatedSlugs: ["orthopedic-physiotherapy", "pediatric-rehabilitation"],
   },
   {
@@ -223,6 +242,8 @@ export const services: ServiceData[] = [
       "Your child has been diagnosed with a developmental or neurological condition.",
       "A paediatrician or GP has recommended physiotherapy.",
     ],
+    image: "/images/service-pediatric.jpg",
+    imageAlt: "Pediatric physiotherapy session with a child patient",
     relatedSlugs: ["neurological-rehabilitation", "sports-physiotherapy"],
   },
   {
@@ -261,6 +282,8 @@ export const services: ServiceData[] = [
       "Your physiotherapist has identified active trigger points contributing to your symptoms.",
       "You have been recommended dry needling as part of a comprehensive treatment plan.",
     ],
+    image: "/images/blog-dry-needling.jpg",
+    imageAlt: "Physiotherapist performing dry needling on a patient",
     relatedSlugs: ["iastm", "cupping-therapy", "sports-physiotherapy"],
   },
   {
@@ -297,6 +320,8 @@ export const services: ServiceData[] = [
       "You are seeking complementary techniques alongside your main physiotherapy program.",
       "You are recovering from a soft tissue injury or experiencing chronic muscle tension.",
     ],
+    image: "/images/blog-cupping.jpg",
+    imageAlt: "Cupping therapy treatment applied to a patient's back",
     relatedSlugs: ["dry-needling", "iastm", "orthopedic-physiotherapy"],
   },
   {
@@ -335,7 +360,361 @@ export const services: ServiceData[] = [
       "You have significant scar tissue from previous injury or surgery.",
       "Your physiotherapist has identified fascial restrictions as a contributing factor.",
     ],
+    image: "/images/service-iastm.jpg",
+    imageAlt: "IASTM instrument-assisted soft tissue mobilization treatment",
     relatedSlugs: ["dry-needling", "cupping-therapy", "orthopedic-physiotherapy"],
+  },
+  {
+    slug: "electrotherapy",
+    title: "Electrotherapy",
+    shortDescription:
+      "Evidence-based electrical modalities for pain relief, inflammation control, and accelerated tissue healing.",
+    icon: Zap,
+    introduction:
+      "Electrotherapy encompasses a range of modalities that use electrical energy to promote tissue healing, reduce pain, and support rehabilitation. At Nagpal's Physio Care, electrotherapy is used as a clinical adjunct alongside therapeutic exercise and manual therapy — not as a standalone intervention.",
+    overview: [
+      "Transcutaneous Electrical Nerve Stimulation (TENS) for acute and chronic pain management.",
+      "Interferential Therapy (IFT) for deep tissue pain relief and muscle re-education.",
+      "Ultrasound therapy for soft tissue healing and scar tissue management.",
+      "Shortwave diathermy for deep heating and tissue extensibility.",
+      "Therapeutic laser (LLLT) for wound healing and pain modulation.",
+    ],
+    conditionsTreated: [
+      "Acute and chronic musculoskeletal pain",
+      "Soft tissue injuries and sprains",
+      "Joint inflammation and swelling",
+      "Nerve pain and radiculopathy",
+      "Post-surgical wound healing",
+      "Tendinopathies",
+      "Muscle spasm and guarding",
+    ],
+    benefits: [
+      "Non-invasive and generally well-tolerated pain relief.",
+      "Supports the healing environment for injured soft tissues.",
+      "Can reduce dependence on pain medication during rehabilitation.",
+      "Enhances the effectiveness of subsequent exercise therapy.",
+    ],
+    whenToConsult: [
+      "You have acute or subacute pain limiting your ability to exercise.",
+      "Soft tissue inflammation is impeding your rehabilitation progress.",
+      "Your physiotherapist recommends electrotherapy as part of your treatment plan.",
+    ],
+    image: "/images/service-electrotherapy.jpg",
+    imageAlt: "Electrotherapy session with physiotherapy equipment",
+    relatedSlugs: ["exercise-therapy", "manual-therapy", "orthopedic-physiotherapy"],
+  },
+  {
+    slug: "exercise-therapy",
+    title: "Exercise Therapy",
+    shortDescription:
+      "Structured, progressive therapeutic exercise programs designed to restore function, strength, and movement.",
+    icon: Dumbbell,
+    introduction:
+      "Exercise therapy is the cornerstone of physiotherapy rehabilitation. At Nagpal's Physio Care, individualized exercise programs are developed following a thorough clinical assessment, ensuring that every movement prescription is safe, appropriate, and progressive.",
+    overview: [
+      "Individualized exercise prescription based on clinical assessment findings and patient goals.",
+      "Progressive resistance training to restore muscle strength and endurance.",
+      "Flexibility and mobility exercises tailored to the presenting condition.",
+      "Functional movement training to support return to daily activities and sport.",
+      "Home exercise program design with clear instruction and follow-up.",
+    ],
+    conditionsTreated: [
+      "Musculoskeletal conditions — back, neck, shoulder, knee, and hip pain",
+      "Post-surgical rehabilitation",
+      "Sports injuries",
+      "Neurological conditions",
+      "Chronic pain and deconditioning",
+      "Balance and gait disorders",
+      "Post-fracture rehabilitation",
+    ],
+    benefits: [
+      "Evidence-based, patient-specific exercise programs tailored to your condition.",
+      "Progressive overload principles to drive adaptation safely.",
+      "Education on exercise technique and self-management.",
+      "Ongoing reassessment and program modification as you improve.",
+    ],
+    whenToConsult: [
+      "You are recovering from injury or surgery and need structured rehabilitation.",
+      "You feel deconditioned and want guidance on safe, progressive exercise.",
+      "Your current exercise approach is not achieving the outcomes you expect.",
+    ],
+    image: "/images/service-exercise.jpg",
+    imageAlt: "Therapeutic exercise rehabilitation session with a physiotherapist",
+    relatedSlugs: ["manual-therapy", "strength-training", "sports-physiotherapy"],
+  },
+  {
+    slug: "manual-therapy",
+    title: "Manual Therapy",
+    shortDescription:
+      "Hands-on physiotherapy treatment including joint mobilization, manipulation, and soft tissue techniques.",
+    icon: Hand,
+    introduction:
+      "Manual therapy is a set of hands-on techniques applied directly to joints, muscles, and soft tissues. At Nagpal's Physio Care, manual therapy is integrated into a broader rehabilitation program — never used in isolation — and is always guided by the findings of a thorough clinical assessment.",
+    overview: [
+      "Joint mobilization and manipulation to restore range of motion and reduce pain.",
+      "Soft tissue massage and myofascial techniques to address muscle tightness.",
+      "Neural mobilization for nerve-related symptoms and radiculopathy.",
+      "Spinal and peripheral joint techniques based on clinical reasoning.",
+      "Integrated with therapeutic exercise for lasting functional outcomes.",
+    ],
+    conditionsTreated: [
+      "Cervical and lumbar spine dysfunction",
+      "Joint stiffness and restricted range of motion",
+      "Peripheral joint conditions — shoulder, hip, knee, ankle",
+      "Nerve root irritation and radiculopathy",
+      "Post-surgical joint stiffness",
+      "Headaches of cervicogenic origin",
+      "Muscle tightness and myofascial pain",
+    ],
+    benefits: [
+      "Immediate improvement in joint mobility and pain in many presentations.",
+      "Hands-on assessment provides detailed information to guide treatment.",
+      "Complements exercise therapy by restoring movement needed for exercise.",
+      "Applied by a qualified physiotherapist following evidence-based guidelines.",
+    ],
+    whenToConsult: [
+      "You have joint stiffness or restricted movement limiting daily activities.",
+      "Pain is not responding to exercise or activity modification alone.",
+      "A physiotherapist has identified joint or soft tissue restriction as a contributing factor.",
+    ],
+    image: "/images/service-manual.jpg",
+    imageAlt: "Manual therapy hands-on physiotherapy treatment",
+    relatedSlugs: ["exercise-therapy", "orthopedic-physiotherapy", "chiropractic"],
+  },
+  {
+    slug: "vestibular-rehabilitation",
+    title: "Vestibular Rehabilitation",
+    shortDescription:
+      "Specialized therapy for dizziness, vertigo, and balance disorders related to the vestibular system.",
+    icon: RotateCcw,
+    introduction:
+      "Vestibular rehabilitation is a specialized form of physiotherapy targeting conditions that affect the inner ear and its connections to the brain. Dizziness, vertigo, and balance problems can be significantly debilitating — vestibular rehabilitation provides an evidence-based pathway to recovery.",
+    overview: [
+      "Comprehensive vestibular assessment including positional testing and balance evaluation.",
+      "Canalith repositioning manoeuvres for BPPV (Benign Paroxysmal Positional Vertigo).",
+      "Habituation exercises to desensitize the vestibular system to provocative movements.",
+      "Gaze stabilization exercises to improve visual-vestibular integration.",
+      "Progressive balance and gait training to reduce fall risk.",
+    ],
+    conditionsTreated: [
+      "Benign Paroxysmal Positional Vertigo (BPPV)",
+      "Vestibular neuritis and labyrinthitis",
+      "Unilateral vestibular hypofunction",
+      "Chronic dizziness and disequilibrium",
+      "Post-concussion vestibular dysfunction",
+      "Balance disorders and increased fall risk",
+      "Motion sensitivity and visually-induced dizziness",
+    ],
+    benefits: [
+      "Targeted treatment of the underlying vestibular cause rather than symptom suppression.",
+      "BPPV can often be resolved in one to three sessions with repositioning manoeuvres.",
+      "Reduced dizziness, improved balance, and restored confidence in movement.",
+      "Lower fall risk through progressive balance and gait rehabilitation.",
+    ],
+    whenToConsult: [
+      "You experience spinning sensations (vertigo), particularly with position changes.",
+      "You have persistent dizziness or unsteadiness affecting daily activities.",
+      "You have been diagnosed with a vestibular condition and referred for physiotherapy.",
+      "You have had a concussion and are experiencing ongoing dizziness or balance problems.",
+    ],
+    image: "/images/service-vestibular.jpg",
+    imageAlt: "Vestibular rehabilitation balance therapy session",
+    relatedSlugs: ["neurological-rehabilitation", "exercise-therapy", "manual-therapy"],
+  },
+  {
+    slug: "strength-training",
+    title: "Generalised Strength Training",
+    shortDescription:
+      "Progressive resistance training programs for rehabilitation, injury prevention, and overall functional fitness.",
+    icon: TrendingUp,
+    introduction:
+      "Strength training is one of the most well-evidenced interventions in physiotherapy and rehabilitation. At Nagpal's Physio Care, generalized strength training programs are developed for patients recovering from injury, managing chronic conditions, or looking to build a foundation of physical health under clinical supervision.",
+    overview: [
+      "Baseline strength and functional movement assessment to identify priorities.",
+      "Progressive resistance programs using body weight, bands, and weights as appropriate.",
+      "Compound and isolation exercises tailored to the patient's goals and capacity.",
+      "Techniques for safe lifting and load management.",
+      "Periodized programs with regular reassessment and progression.",
+    ],
+    conditionsTreated: [
+      "Deconditioning and generalized weakness",
+      "Post-surgical or post-injury rehabilitation requiring strength rebuilding",
+      "Osteoporosis and bone density maintenance",
+      "Chronic pain with associated muscle wasting",
+      "Age-related strength and balance decline",
+      "Sports performance gaps between rehabilitation and return to training",
+    ],
+    benefits: [
+      "Clinically supervised strength training with appropriate load management.",
+      "Builds the physical foundation needed to sustain long-term joint health.",
+      "Reduces risk of future injury through improved musculoskeletal resilience.",
+      "Bridges the gap between rehabilitation and independent fitness training.",
+    ],
+    whenToConsult: [
+      "You are recovering from injury or surgery and need to rebuild strength.",
+      "You have been advised to improve strength as part of managing a chronic condition.",
+      "You feel weak or deconditioned and want to start training safely.",
+    ],
+    image: "/images/service-strength.jpg",
+    imageAlt: "Generalised strength training rehabilitation exercises",
+    relatedSlugs: ["exercise-therapy", "sports-physiotherapy", "orthopedic-physiotherapy"],
+  },
+  {
+    slug: "diet-nutrition",
+    title: "Diet & Nutrition Charts",
+    shortDescription:
+      "Personalized dietary guidance and nutrition charts to support recovery, reduce inflammation, and optimize rehabilitation outcomes.",
+    icon: ClipboardList,
+    introduction:
+      "Nutrition plays an important but often overlooked role in recovery from injury, surgery, and chronic musculoskeletal conditions. At Nagpal's Physio Care, diet and nutrition guidance is offered as a complementary component of rehabilitation — providing patients with practical, evidence-informed advice to support their recovery.",
+    overview: [
+      "Assessment of current dietary habits and nutritional needs in the context of rehabilitation.",
+      "Personalized nutrition charts aligned with recovery phase and activity level.",
+      "Guidance on anti-inflammatory food choices to support tissue healing.",
+      "Protein intake recommendations to support muscle rebuilding and strength gains.",
+      "Hydration and micronutrient guidance relevant to musculoskeletal health.",
+    ],
+    conditionsTreated: [
+      "Post-surgical recovery requiring adequate protein and micronutrients",
+      "Chronic inflammation contributing to pain and restricted recovery",
+      "Osteoporosis and bone health",
+      "Sports performance and body composition",
+      "Weight management as part of joint load reduction (hip, knee, spine)",
+      "Fatigue management during intensive rehabilitation",
+    ],
+    benefits: [
+      "Practical, individualized nutrition guidance that complements physiotherapy.",
+      "Supports tissue healing and muscle rebuilding during rehabilitation.",
+      "Addresses nutritional gaps that may be slowing recovery.",
+      "Empowers patients with knowledge to make informed dietary choices.",
+    ],
+    whenToConsult: [
+      "You are recovering from surgery or a significant injury and want nutritional support.",
+      "Your physiotherapist has identified nutrition as a factor in your recovery.",
+      "You want a structured approach to nutrition alongside your rehabilitation program.",
+    ],
+    image: "/images/service-diet.jpg",
+    imageAlt: "Healthy food and nutrition planning for rehabilitation",
+    relatedSlugs: ["exercise-therapy", "strength-training", "sports-physiotherapy"],
+  },
+  {
+    slug: "chiropractic",
+    title: "Chiropractic Treatment",
+    shortDescription:
+      "Spinal and joint manipulation techniques to restore alignment, relieve pain, and improve musculoskeletal function.",
+    icon: Layers,
+    introduction:
+      "Chiropractic treatment at Nagpal's Physio Care involves the application of high-velocity, low-amplitude spinal manipulation and joint adjustment techniques to address pain, stiffness, and dysfunction. These techniques are delivered by Dr. Lovish Nagpal as part of a comprehensive physiotherapy treatment program.",
+    overview: [
+      "Detailed spinal and postural assessment prior to any manipulative technique.",
+      "High-velocity, low-amplitude (HVLA) joint manipulation where clinically indicated.",
+      "Mobilization techniques for spinal and peripheral joints.",
+      "Soft tissue preparation before and after manipulative treatment.",
+      "Integrated with exercise therapy and patient education for lasting outcomes.",
+    ],
+    conditionsTreated: [
+      "Acute and chronic low back pain",
+      "Cervical spine dysfunction and neck pain",
+      "Thoracic spine stiffness",
+      "Facet joint syndrome",
+      "Headaches of cervicogenic origin",
+      "Joint restriction following injury",
+      "Sacroiliac joint dysfunction",
+    ],
+    benefits: [
+      "Immediate pain relief and improved range of motion in many presentations.",
+      "Restores segmental joint mobility restricted by injury, posture, or overuse.",
+      "Delivered by a qualified physiotherapist trained in manipulative therapy.",
+      "Combined with exercise for sustained, functional improvement.",
+    ],
+    whenToConsult: [
+      "You have spinal pain with restricted movement not responding to other treatments.",
+      "You experience recurring episodes of back or neck pain.",
+      "You have been assessed and are considered appropriate for manipulative therapy.",
+    ],
+    image: "/images/service-chiro.jpg",
+    imageAlt: "Chiropractic spinal treatment by a physiotherapist",
+    relatedSlugs: ["manual-therapy", "orthopedic-physiotherapy", "exercise-therapy"],
+  },
+  {
+    slug: "kinesiotaping",
+    title: "Kinesiotaping",
+    shortDescription:
+      "Application of elastic therapeutic tape to support joints, reduce swelling, and facilitate correct movement patterns.",
+    icon: Bandage,
+    introduction:
+      "Kinesiotaping involves the application of a specialized elastic adhesive tape to the skin to support joints and soft tissues, facilitate muscle activity, reduce swelling, and support correct movement during activity. It is commonly used as an adjunct within a physiotherapy treatment program.",
+    overview: [
+      "Assessment of the target area and determination of the appropriate taping technique.",
+      "Application of kinesio tape with tension and direction specific to the clinical goal.",
+      "Techniques may target muscle facilitation, inhibition, joint support, or lymphatic drainage.",
+      "Patients are educated on tape maintenance, duration, and removal.",
+      "Integrated with active rehabilitation — not a substitute for exercise.",
+    ],
+    conditionsTreated: [
+      "Shoulder impingement and rotator cuff conditions",
+      "Patellofemoral pain syndrome (runner's knee)",
+      "Achilles tendinopathy",
+      "Ankle sprains and instability",
+      "Lower back pain",
+      "Shin splints",
+      "Post-surgical swelling and oedema",
+      "Postural correction during rehabilitation",
+    ],
+    benefits: [
+      "Provides joint and soft tissue support without restricting full range of motion.",
+      "May reduce swelling through lymphatic drainage taping techniques.",
+      "Worn for several days, providing continuous support between sessions.",
+      "Hypoallergenic and water-resistant — compatible with most daily activities.",
+    ],
+    whenToConsult: [
+      "You need joint support during training or daily activities while recovering from injury.",
+      "Your physiotherapist has identified kinesiotaping as a useful adjunct to your program.",
+      "You experience swelling or poor muscle activation in the affected area.",
+    ],
+    image: "/images/service-kinesio.jpg",
+    imageAlt: "Kinesiotaping applied to an athlete's shoulder",
+    relatedSlugs: ["sports-physiotherapy", "exercise-therapy", "orthopedic-physiotherapy"],
+  },
+  {
+    slug: "pilates",
+    title: "Pilates Rehabilitation",
+    shortDescription:
+      "Clinical Pilates-based exercise for core stability, postural correction, and movement control rehabilitation.",
+    icon: Move,
+    introduction:
+      "Clinical Pilates uses the principles of the Pilates method — core engagement, movement control, breathing, and postural alignment — within a structured physiotherapy rehabilitation context. It is particularly effective for spinal conditions, postural dysfunction, and patients who require a low-impact, progressive approach to rebuilding functional movement.",
+    overview: [
+      "Postural and movement assessment to identify areas of weakness, compensation, or restriction.",
+      "Pilates-based exercise programs designed around clinical rehabilitation goals.",
+      "Progressive core activation from deep stabilizers to dynamic movement patterns.",
+      "Breathing coordination and body awareness training.",
+      "Mat-based and equipment-assisted programs as appropriate.",
+    ],
+    conditionsTreated: [
+      "Chronic low back pain",
+      "Postural dysfunction and spinal instability",
+      "Post-surgical spinal rehabilitation",
+      "Pelvic floor and abdominal rehabilitation",
+      "Hip and pelvic instability",
+      "Scoliosis",
+      "Pregnancy and post-natal rehabilitation",
+      "General deconditioning requiring low-impact rehabilitation",
+    ],
+    benefits: [
+      "Builds deep core stability progressively and safely.",
+      "Improves body awareness and movement quality.",
+      "Low-impact and suitable for a wide range of age groups and conditions.",
+      "Complements manual therapy and traditional exercise approaches.",
+    ],
+    whenToConsult: [
+      "You have chronic back pain or postural problems that exercise alone has not resolved.",
+      "You are recovering from spinal surgery and need a graduated rehabilitation approach.",
+      "You want a structured, clinically supervised approach to core and postural rehabilitation.",
+    ],
+    image: "/images/service-pilates.jpg",
+    imageAlt: "Clinical Pilates rehabilitation exercise session",
+    relatedSlugs: ["exercise-therapy", "strength-training", "orthopedic-physiotherapy"],
   },
 ];
 

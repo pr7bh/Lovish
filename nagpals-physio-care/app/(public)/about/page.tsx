@@ -59,22 +59,19 @@ export default function AboutPage() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
-          {/* Photo placeholder */}
+          {/* Doctor photo */}
           <AnimateSection from="left">
             <div className="relative max-w-md lg:sticky lg:top-28">
-              <div className="aspect-[3/4] bg-beige rounded-sm overflow-hidden border border-soft-beige">
-                <div className="absolute inset-0 bg-gradient-to-b from-beige to-[#C9B89A]" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center px-8">
-                    <p className="font-heading text-3xl text-rich-black/20">
-                      Dr. Lovish Nagpal
-                    </p>
-                    <p className="text-xs text-muted-text/40 mt-2 font-sans tracking-widest uppercase">
-                      Photo Placeholder
-                    </p>
-                  </div>
-                </div>
-                <div className="absolute bottom-0 inset-x-0 h-1 bg-gold" />
+              <div className="aspect-[3/4] bg-beige rounded-sm overflow-hidden border border-soft-beige relative">
+                <Image
+                  src="/images/dr-lovish-nagpal.png"
+                  alt="Dr. Lovish Nagpal (PT) — Founder of Nagpal's Physio Care, Yamuna Nagar"
+                  fill
+                  className="object-cover object-top"
+                  sizes="(max-width: 1024px) 90vw, 480px"
+                  priority
+                />
+                <div className="absolute bottom-0 inset-x-0 h-1 bg-gold z-10" />
               </div>
               <div className="absolute -bottom-3 -right-3 w-full h-full border border-gold/20 rounded-sm -z-10" />
             </div>

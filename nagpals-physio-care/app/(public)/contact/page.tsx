@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { MapPin, MessageCircle } from "lucide-react";
-import Link from "next/link";
+import { MessageCircle, Phone } from "lucide-react";
+import { clinic } from "@/lib/clinic-config";
 import { PageHero } from "@/components/shared/PageHero";
 import { AnimateSection } from "@/components/shared/AnimateSection";
 import { ContactDetails } from "@/components/shared/ContactDetails";
@@ -9,9 +9,9 @@ import { JsonLd } from "@/components/shared/JsonLd";
 import { meta, medicalClinicJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = meta({
-  title: "Contact & Appointments",
+  title: "Book an Appointment",
   description:
-    "Book an appointment or get in touch with Nagpal's Physio Care. Find our clinic address, phone number, email, and opening hours.",
+    "Book a physiotherapy appointment with Dr. Lovish Nagpal at Nagpal's Physio Care, Yamuna Nagar. Fill the form and connect directly via WhatsApp.",
   path: "/contact",
 });
 
@@ -22,8 +22,8 @@ export default function ContactPage() {
 
       <PageHero
         overline="Get In Touch"
-        heading="Contact & Appointments"
-        description="We'd love to hear from you. Book an appointment, ask a question, or find out how we can help with your recovery."
+        heading="Book an Appointment"
+        description="Fill in your details below and we'll open WhatsApp with a ready-to-send appointment request for Dr. Lovish Nagpal."
         breadcrumb={[
           { name: "Home", href: "/" },
           { name: "Contact", href: "/contact" },
@@ -32,7 +32,8 @@ export default function ContactPage() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
-          {/* Clinic info */}
+
+          {/* Left — Clinic info + map */}
           <AnimateSection from="left">
             <div>
               <h2 className="font-heading text-3xl text-rich-black mb-8">
@@ -40,51 +41,99 @@ export default function ContactPage() {
               </h2>
               <ContactDetails showWhatsApp />
 
-              {/* WhatsApp CTA */}
-              <div className="mt-8 p-5 rounded-sm bg-beige/60 border border-beige flex items-start gap-4">
-                <div className="w-9 h-9 rounded-sm bg-gold/10 flex items-center justify-center shrink-0 mt-0.5">
-                  <MessageCircle size={16} className="text-gold" />
+              {/* Map */}
+              <div className="mt-8 overflow-hidden rounded-sm border border-soft-beige">
+                <div className="aspect-[4/3] w-full">
+                  <iframe
+                    title="Nagpal's Physio Care Location"
+                    src="https://www.google.com/maps?q=Nagpal%27s+Physio+Care,+717+Mahavir+Colony,+East+Bhatia+Nagar,+Yamuna+Nagar,+Haryana+135001&output=embed"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    loading="lazy"
+                    allowFullScreen
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
                 </div>
-                <div>
-                  <p className="text-sm font-sans font-medium text-rich-black mb-1">
-                    Prefer WhatsApp?
-                  </p>
-                  <p className="text-sm text-muted-text mb-3">
-                    Send us a message on WhatsApp to book or ask a question.
-                  </p>
-                  <Link
-                    href="#"
-                    className="inline-flex h-9 items-center px-5 bg-gold text-white text-xs font-sans font-medium rounded-sm hover:bg-gold-light transition-colors duration-200"
+                <div className="flex items-center justify-between gap-4 p-4 bg-beige/40">
+                  <div className="min-w-0">
+                    <p className="text-sm font-medium text-rich-black">
+                      Nagpal&apos;s Physio Care
+                    </p>
+                    <p className="mt-0.5 text-xs text-muted-text">
+                      717, Mahavir Colony, Yamuna Nagar, Haryana
+                    </p>
+                  </div>
+                  <a
+                    href="https://www.google.com/maps/dir/?api=1&destination=Nagpal%27s+Physio+Care,+717+Mahavir+Colony,+East+Bhatia+Nagar,+Yamuna+Nagar,+Haryana+135001"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="shrink-0 text-xs font-medium tracking-wide text-gold hover:opacity-70 transition-opacity"
                   >
-                    Chat on WhatsApp
-                  </Link>
-                </div>
-              </div>
-
-              {/* Map placeholder */}
-              <div className="mt-8 aspect-[4/3] bg-beige rounded-sm border border-soft-beige flex items-center justify-center">
-                <div className="text-center">
-                  <MapPin size={28} className="text-gold/30 mx-auto mb-2" />
-                  <p className="text-xs text-muted-text/50 font-sans tracking-widest uppercase">
-                    Map Placeholder
-                  </p>
+                    Get Directions →
+                  </a>
                 </div>
               </div>
             </div>
           </AnimateSection>
 
-          {/* Form */}
+          {/* Right — Appointment form */}
           <AnimateSection from="right">
             <div>
-              <h2 className="font-heading text-3xl text-rich-black mb-6">
-                Request an Appointment
-              </h2>
-              <p className="text-sm text-muted-text leading-relaxed mb-8">
-                Fill in the form below and we&apos;ll be in touch to confirm your
-                appointment. Fields marked with{" "}
-                <span className="text-gold">*</span> are required.
-              </p>
+              <div className="mb-8">
+                <h2 className="font-heading text-3xl text-rich-black mb-3">
+                  Request an Appointment
+                </h2>
+                <p className="text-sm text-muted-text leading-relaxed">
+                  Fill in your details and click submit — WhatsApp opens with a
+                  pre-filled message ready to send to Dr. Lovish Nagpal.
+                </p>
+              </div>
+
               <AppointmentForm />
+
+              {/* Divider */}
+              <div className="flex items-center gap-4 my-8">
+                <span className="flex-1 h-px bg-beige" />
+                <span className="text-xs font-sans text-muted-text/60 uppercase tracking-widest">
+                  or contact directly
+                </span>
+                <span className="flex-1 h-px bg-beige" />
+              </div>
+
+              {/* Direct contact quick-links */}
+              <div className="grid sm:grid-cols-2 gap-4">
+                <a
+                  href={clinic.whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-3 p-4 rounded-sm border border-beige bg-warm-white hover:border-gold/40 transition-all duration-200"
+                >
+                  <div className="w-9 h-9 rounded-sm bg-[#25D366]/10 flex items-center justify-center shrink-0">
+                    <MessageCircle size={18} className="text-[#25D366]" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-xs text-muted-text/70 mb-0.5">WhatsApp</p>
+                    <p className="text-sm font-sans font-medium text-rich-black group-hover:text-gold transition-colors duration-200 truncate">
+                      {clinic.whatsapp}
+                    </p>
+                  </div>
+                </a>
+                <a
+                  href={clinic.phoneHref}
+                  className="group flex items-center gap-3 p-4 rounded-sm border border-beige bg-warm-white hover:border-gold/40 transition-all duration-200"
+                >
+                  <div className="w-9 h-9 rounded-sm bg-gold/10 flex items-center justify-center shrink-0">
+                    <Phone size={16} className="text-gold" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-xs text-muted-text/70 mb-0.5">Call Us</p>
+                    <p className="text-sm font-sans font-medium text-rich-black group-hover:text-gold transition-colors duration-200 truncate">
+                      {clinic.phone}
+                    </p>
+                  </div>
+                </a>
+              </div>
             </div>
           </AnimateSection>
         </div>

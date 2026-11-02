@@ -72,7 +72,7 @@ export default function Navbar() {
         {/* CTA + hamburger */}
         <div className="flex items-center gap-3">
           <Link
-            href="/book-appointment"
+            href="/contact"
             className="hidden md:inline-flex h-10 items-center px-6 bg-gold text-white text-sm font-sans font-medium rounded-sm hover:bg-gold-light transition-colors duration-200"
           >
             Book Appointment
@@ -103,7 +103,7 @@ export default function Navbar() {
               </Link>
             ))}
             <Link
-              href="/book-appointment"
+              href="/contact"
               className="mt-3 inline-flex h-11 items-center justify-center bg-gold text-white text-sm font-sans font-medium rounded-sm"
               onClick={() => setMenuOpen(false)}
             >

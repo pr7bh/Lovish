@@ -1,11 +1,42 @@
 import { MapPin, Phone, Mail, Clock, MessageCircle } from "lucide-react";
+import { clinic } from "@/lib/clinic-config";
 
-const details = [
-  { icon: MapPin, label: "Address", value: "717, Mahavir Colony, East Bhatia Nagar\nYamuna Nagar, Haryana 135001" },
-  { icon: Phone, label: "Phone", value: "+91 72061 99132" },
-  { icon: Mail, label: "Email", value: "Available on request" },
-  { icon: Clock, label: "Hours", value: "Mon – Sat: 9:00 AM – 9:00 PM\nSunday: 9:00 AM – 2:00 PM" },
-  { icon: MessageCircle, label: "WhatsApp", value: "+91 72061 99132" },
+interface Detail {
+  icon: React.ComponentType<{ size?: number; className?: string }>;
+  label: string;
+  value: string;
+  href?: string;
+}
+
+const details: Detail[] = [
+  {
+    icon: MapPin,
+    label: "Address",
+    value: clinic.address.full,
+  },
+  {
+    icon: Phone,
+    label: "Phone",
+    value: clinic.phone,
+    href: clinic.phoneHref,
+  },
+  {
+    icon: Mail,
+    label: "Email",
+    value: clinic.email,
+    href: clinic.emailHref,
+  },
+  {
+    icon: Clock,
+    label: "Hours",
+    value: clinic.hours.combined,
+  },
+  {
+    icon: MessageCircle,
+    label: "WhatsApp",
+    value: clinic.whatsapp,
+    href: clinic.whatsappUrl,
+  },
 ];
 
 interface Props {
@@ -27,7 +58,18 @@ export function ContactDetails({ showWhatsApp = false }: Props) {
               <p className="text-xs font-sans font-medium text-muted-text uppercase tracking-wider mb-0.5">
                 {item.label}
               </p>
-              <p className="text-sm text-rich-black/80 whitespace-pre-line">{item.value}</p>
+              {item.href ? (
+                <a
+                  href={item.href}
+                  target={item.href.startsWith("http") ? "_blank" : undefined}
+                  rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  className="text-sm text-rich-black/80 hover:text-gold transition-colors duration-200"
+                >
+                  {item.value}
+                </a>
+              ) : (
+                <p className="text-sm text-rich-black/80 whitespace-pre-line">{item.value}</p>
+              )}
             </div>
           </li>
         );

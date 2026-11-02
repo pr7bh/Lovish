@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import { clinic } from "@/lib/clinic-config";
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? "https://nagpalsphysiocare.com";
+const BASE_URL = clinic.baseUrl;
 
 export function meta({
   title,
@@ -36,14 +37,15 @@ export function medicalClinicJsonLd() {
     medicalSpecialty: "Physiotherapy",
     address: {
       "@type": "PostalAddress",
-      streetAddress: "717, Mahavir Colony, East Bhatia Nagar",
-      addressLocality: "Yamuna Nagar",
-      addressRegion: "Haryana",
-      postalCode: "135001",
+      streetAddress: clinic.address.street,
+      addressLocality: clinic.address.city,
+      addressRegion: clinic.address.state,
+      postalCode: clinic.address.pincode,
       addressCountry: "IN",
     },
-    telephone: "+91-72061-99132",
-    sameAs: ["https://www.instagram.com/nagpals_physio_care"],
+    telephone: clinic.phone,
+    email: clinic.email,
+    sameAs: [clinic.instagramUrl],
     url: BASE_URL,
     priceRange: "$$",
   };
