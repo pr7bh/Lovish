@@ -5,6 +5,8 @@ import { ServiceDetail } from "@/components/services/ServiceDetail";
 import { services, getServiceBySlug, getRelatedServices } from "@/lib/services-data";
 import { meta } from "@/lib/seo";
 
+export const instant = false;
+
 export async function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
 }

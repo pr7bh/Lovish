@@ -10,6 +10,8 @@ import { AnimateSection } from "@/components/shared/AnimateSection";
 import { blogPosts, getPostBySlug, getRelatedPosts } from "@/lib/blog-data";
 import { meta } from "@/lib/seo";
 
+export const instant = false;
+
 export async function generateStaticParams() {
   return blogPosts.map((p) => ({ slug: p.slug }));
 }

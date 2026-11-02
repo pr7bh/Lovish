@@ -5,6 +5,8 @@ import { ConditionDetail } from "@/components/conditions/ConditionDetail";
 import { conditions, getConditionBySlug } from "@/lib/conditions-data";
 import { meta } from "@/lib/seo";
 
+export const instant = false;
+
 export async function generateStaticParams() {
   return conditions.map((c) => ({ slug: c.slug }));
 }
