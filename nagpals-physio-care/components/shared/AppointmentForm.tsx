@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { useState, useRef, type FormEvent } from "react";
+import { ArrowRight, CheckCircle2, Copy, Check, AlertCircle } from "lucide-react";
 import { cn } from "cn";
 import { clinic } from "@/lib/clinic-config";
 
@@ -58,10 +58,12 @@ interface Errors {
   time?: string;
 }
 
+type CopyState = "idle" | "copied" | "failed";
+
 const today = new Date().toISOString().split("T")[0];
 
 function buildWhatsAppMessage(f: FormState): string {
-  const lines = [
+  const lines: (string | null)[] = [
     `Hello Dr. Lovish Nagpal,`,
     ``,
     `I would like to request a physiotherapy appointment.`,
@@ -82,7 +84,7 @@ function buildWhatsAppMessage(f: FormState): string {
     ``,
     `Thank you.`,
   ];
-  return lines.filter((l) => l !== null).join("\n");
+  return lines.filter((l): l is string => l !== null).join("\n");
 }
 
 const inputBase =
@@ -90,20 +92,19 @@ const inputBase =
 const inputNormal = "border-beige focus:border-gold focus:ring-1 focus:ring-gold/30";
 const inputError = "border-red-400 focus:border-red-400 focus:ring-1 focus:ring-red-400/30";
 
-export function AppointmentForm() {
-  const [form, setForm] = useState<FormState>({
-    name: "",
-    mobile: "",
-    email: "",
-    service: "",
-    date: "",
-    time: "",
-    message: "",
-  });
-  const [errors, setErrors] = useState<Errors>({});
-  const [submitted, setSubmitted] = useState(false);
+const EMPTY_FORM: FormState = {
+  name: "", mobile: "", email: "", service: "", date: "", time: "", message: "",
+};
 
-  function set(field: keyof FormState, value: string) {
+export function AppointmentForm() {
+  const [form, setForm] = useState<FormState>(EMPTY_FORM);
+  const [errors, setErrors] = useState<Errors>({});
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [copyState, setCopyState] = useState<CopyState>("idle");
+  const lastMessage = useRef("");
+
+  function setField(field: keyof FormState, value: string) {
     setForm((p) => ({ ...p, [field]: value }));
     if (errors[field as keyof Errors]) {
       setErrors((p) => ({ ...p, [field]: undefined }));
@@ -127,34 +128,127 @@ export function AppointmentForm() {
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
+    if (submitting) return;
     if (!validate()) return;
+
     const msg = buildWhatsAppMessage(form);
+    lastMessage.current = msg;
+
     const url = `${clinic.whatsappUrl}?text=${encodeURIComponent(msg)}`;
+    setSubmitting(true);
     window.open(url, "_blank", "noopener,noreferrer");
     setSubmitted(true);
+
+    // Fire email notification — fire-and-forget, never blocks the WhatsApp flow
+    fetch("/api/send-appointment", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
+    }).catch(() => {
+      // Silent — WhatsApp is the primary channel
+    });
+
+    // Re-enable after 3 s in case user returns to the form
+    setTimeout(() => setSubmitting(false), 3000);
   }
 
+  async function handleCopy() {
+    const msg = lastMessage.current;
+    if (!msg) return;
+    try {
+      await navigator.clipboard.writeText(msg);
+      setCopyState("copied");
+    } catch {
+      setCopyState("failed");
+    }
+    setTimeout(() => setCopyState("idle"), 5000);
+  }
+
+  function handleReset() {
+    setSubmitted(false);
+    setSubmitting(false);
+    setCopyState("idle");
+    setForm(EMPTY_FORM);
+    setErrors({});
+  }
+
+  // ── Success screen ───────────────────────────────────────────────────────────
   if (submitted) {
     return (
-      <div className="flex flex-col items-start gap-6 py-8">
+      <div className="flex flex-col items-start gap-6 py-6">
         <div className="w-14 h-14 rounded-full bg-gold/10 flex items-center justify-center">
           <CheckCircle2 size={28} className="text-gold" />
         </div>
+
         <div>
           <h3 className="font-heading text-2xl text-rich-black mb-2">
             WhatsApp Opened
           </h3>
           <p className="text-sm text-muted-text leading-relaxed max-w-sm">
-            Your appointment request has been pre-filled in WhatsApp. Simply
-            review the message and tap <strong>Send</strong> — Dr. Lovish Nagpal
-            will confirm your slot promptly.
+            Your appointment details have been pre-filled in WhatsApp. Review
+            the message and tap <strong>Send</strong> to submit your request to
+            Dr. Lovish Nagpal.
           </p>
         </div>
+
+        {/* Copy fallback */}
+        <div className="w-full rounded-sm border border-beige bg-warm-white p-5 flex flex-col gap-3">
+          <p className="text-xs font-sans font-semibold text-muted-text uppercase tracking-widest">
+            WhatsApp didn&apos;t open?
+          </p>
+          <p className="text-sm text-muted-text leading-relaxed">
+            Copy your appointment message and paste it directly into WhatsApp
+            Web or the WhatsApp app.
+          </p>
+
+          <button
+            type="button"
+            onClick={handleCopy}
+            disabled={copyState === "copied"}
+            className={cn(
+              "inline-flex items-center gap-2 h-10 px-5 rounded-sm text-sm font-sans font-medium transition-all duration-200",
+              copyState === "copied"
+                ? "bg-gold/10 text-gold cursor-default"
+                : copyState === "failed"
+                ? "bg-red-50 border border-red-200 text-red-600 hover:bg-red-100"
+                : "bg-beige text-rich-black hover:bg-beige/70"
+            )}
+          >
+            {copyState === "copied" ? (
+              <>
+                <Check size={15} />
+                Message Copied
+              </>
+            ) : copyState === "failed" ? (
+              <>
+                <AlertCircle size={15} />
+                Copy Failed — Try Again
+              </>
+            ) : (
+              <>
+                <Copy size={15} />
+                Copy Appointment Message
+              </>
+            )}
+          </button>
+
+          {copyState === "copied" && (
+            <p className="text-xs text-gold leading-relaxed">
+              Appointment message copied successfully. Open WhatsApp and paste
+              it into the chat.
+            </p>
+          )}
+          {copyState === "failed" && (
+            <p className="text-xs text-red-500 leading-relaxed">
+              Clipboard access was blocked. Please allow clipboard permissions
+              in your browser settings and try again.
+            </p>
+          )}
+        </div>
+
         <button
-          onClick={() => {
-            setSubmitted(false);
-            setForm({ name: "", mobile: "", email: "", service: "", date: "", time: "", message: "" });
-          }}
+          type="button"
+          onClick={handleReset}
           className="text-sm font-sans font-medium text-gold hover:opacity-70 transition-opacity underline underline-offset-4"
         >
           Submit another request
@@ -163,6 +257,7 @@ export function AppointmentForm() {
     );
   }
 
+  // ── Form ─────────────────────────────────────────────────────────────────────
   return (
     <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-5">
       {/* Name + Mobile */}
@@ -176,7 +271,7 @@ export function AppointmentForm() {
             autoComplete="name"
             placeholder="e.g. Rahul Sharma"
             value={form.name}
-            onChange={(e) => set("name", e.target.value)}
+            onChange={(e) => setField("name", e.target.value)}
             className={cn(inputBase, errors.name ? inputError : inputNormal)}
           />
           {errors.name && (
@@ -192,7 +287,7 @@ export function AppointmentForm() {
             autoComplete="tel"
             placeholder="e.g. +91 98765 43210"
             value={form.mobile}
-            onChange={(e) => set("mobile", e.target.value)}
+            onChange={(e) => setField("mobile", e.target.value)}
             className={cn(inputBase, errors.mobile ? inputError : inputNormal)}
           />
           {errors.mobile && (
@@ -214,7 +309,7 @@ export function AppointmentForm() {
           autoComplete="email"
           placeholder="e.g. rahul@email.com"
           value={form.email}
-          onChange={(e) => set("email", e.target.value)}
+          onChange={(e) => setField("email", e.target.value)}
           className={cn(inputBase, inputNormal)}
         />
       </div>
@@ -226,7 +321,7 @@ export function AppointmentForm() {
         </label>
         <select
           value={form.service}
-          onChange={(e) => set("service", e.target.value)}
+          onChange={(e) => setField("service", e.target.value)}
           className={cn(
             inputBase,
             errors.service ? inputError : inputNormal,
@@ -257,7 +352,7 @@ export function AppointmentForm() {
             type="date"
             min={today}
             value={form.date}
-            onChange={(e) => set("date", e.target.value)}
+            onChange={(e) => setField("date", e.target.value)}
             className={cn(
               inputBase,
               errors.date ? inputError : inputNormal,
@@ -274,7 +369,7 @@ export function AppointmentForm() {
           </label>
           <select
             value={form.time}
-            onChange={(e) => set("time", e.target.value)}
+            onChange={(e) => setField("time", e.target.value)}
             className={cn(
               inputBase,
               errors.time ? inputError : inputNormal,
@@ -308,16 +403,17 @@ export function AppointmentForm() {
           rows={3}
           placeholder="Describe your concern or any additional details…"
           value={form.message}
-          onChange={(e) => set("message", e.target.value)}
+          onChange={(e) => setField("message", e.target.value)}
           className={cn(inputBase, inputNormal, "resize-none")}
         />
       </div>
 
       <button
         type="submit"
-        className="group inline-flex h-12 items-center justify-center gap-2 px-8 bg-gold text-white text-sm font-sans font-medium rounded-sm hover:bg-gold-light transition-all duration-200 mt-1"
+        disabled={submitting}
+        className="group inline-flex h-12 items-center justify-center gap-2 px-8 bg-gold text-white text-sm font-sans font-medium rounded-sm hover:bg-gold-light transition-all duration-200 mt-1 disabled:opacity-60 disabled:cursor-not-allowed"
       >
-        Submit via WhatsApp
+        Continue to WhatsApp
         <ArrowRight
           size={15}
           className="transition-transform duration-200 group-hover:translate-x-1"
@@ -325,8 +421,8 @@ export function AppointmentForm() {
       </button>
 
       <p className="text-xs text-muted-text/60 leading-relaxed -mt-1">
-        Clicking submit opens WhatsApp with a pre-filled message. You review it
-        and tap Send — nothing is submitted automatically.
+        WhatsApp will open with your appointment details. Please review your
+        message and press Send to submit your request.
       </p>
     </form>
   );
