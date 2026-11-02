@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
 
     const { error } = await resend.emails.send({
       from: "Nagpal's Physio Care <onboarding@resend.dev>",
-      to: [clinic.email],
+      to: [process.env.APPOINTMENT_EMAIL_TO ?? clinic.email],
       replyTo: email || undefined,
       subject: `New Appointment Request — ${name}`,
       html: appointmentEmailHtml({ name, mobile, email, service, date, time, message }),
