@@ -59,6 +59,7 @@ interface Errors {
 }
 
 type CopyState = "idle" | "copied" | "failed";
+type EmailStatus = "sending" | "sent" | "failed";
 
 const today = new Date().toISOString().split("T")[0];
 
@@ -102,6 +103,7 @@ export function AppointmentForm() {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [copyState, setCopyState] = useState<CopyState>("idle");
+  const [emailStatus, setEmailStatus] = useState<EmailStatus>("sending");
   const lastMessage = useRef("");
 
   function setField(field: keyof FormState, value: string) {
@@ -139,14 +141,15 @@ export function AppointmentForm() {
     window.open(url, "_blank", "noopener,noreferrer");
     setSubmitted(true);
 
-    // Fire email notification — fire-and-forget, never blocks the WhatsApp flow
+    // Fire email notification and track status for UI feedback
+    setEmailStatus("sending");
     fetch("/api/send-appointment", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(form),
-    }).catch(() => {
-      // Silent — WhatsApp is the primary channel
-    });
+    })
+      .then((res) => setEmailStatus(res.ok ? "sent" : "failed"))
+      .catch(() => setEmailStatus("failed"));
 
     // Re-enable after 3 s in case user returns to the form
     setTimeout(() => setSubmitting(false), 3000);
@@ -168,6 +171,7 @@ export function AppointmentForm() {
     setSubmitted(false);
     setSubmitting(false);
     setCopyState("idle");
+    setEmailStatus("sending");
     setForm(EMPTY_FORM);
     setErrors({});
   }
@@ -189,6 +193,35 @@ export function AppointmentForm() {
             the message and tap <strong>Send</strong> to submit your request to
             Dr. Lovish Nagpal.
           </p>
+        </div>
+
+        {/* Email status badge */}
+        <div className={cn(
+          "inline-flex items-center gap-2.5 px-4 py-2.5 rounded-sm border text-xs font-sans transition-all duration-300",
+          emailStatus === "sending" && "bg-beige/60 border-beige text-muted-text",
+          emailStatus === "sent"    && "bg-gold/8 border-gold/30 text-gold",
+          emailStatus === "failed"  && "bg-red-50 border-red-200 text-red-600",
+        )}>
+          {emailStatus === "sending" && (
+            <>
+              <svg className="animate-spin shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+                <path d="M21 12a9 9 0 1 1-6.219-8.56" />
+              </svg>
+              Sending email confirmation to the clinic…
+            </>
+          )}
+          {emailStatus === "sent" && (
+            <>
+              <Check size={13} className="shrink-0" />
+              Email confirmation sent to the clinic
+            </>
+          )}
+          {emailStatus === "failed" && (
+            <>
+              <AlertCircle size={13} className="shrink-0" />
+              Email could not be sent — WhatsApp message is still confirmed
+            </>
+          )}
         </div>
 
         {/* Copy fallback */}

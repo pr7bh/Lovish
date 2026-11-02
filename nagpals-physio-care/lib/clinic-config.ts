@@ -10,8 +10,8 @@ export const clinic = {
   emailHref: "mailto:nagpalsphysiocare@gmail.com",
   phone: "+91 72061 99132",
   phoneHref: "tel:+917206199132",
-  whatsapp: "+91 70569 52556",
-  whatsappUrl: "https://wa.me/917056952556",
+  whatsapp: "+91 72061 99132",
+  whatsappUrl: "https://wa.me/917206199132",
   instagram: "@nagpals_physio_care",
   instagramUrl: "https://www.instagram.com/nagpals_physio_care",
   address: {
