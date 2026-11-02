@@ -6,7 +6,7 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default function OgImage() {
-  const logoPath = path.join(process.cwd(), "public", "images", "nagpals-physio-logo.png");
+  const logoPath = path.join(process.cwd(), "public", "images", "nagpals-physio-logo-dark.png");
   const logoBase64 = `data:image/png;base64,${fs.readFileSync(logoPath).toString("base64")}`;
 
   return new ImageResponse(
