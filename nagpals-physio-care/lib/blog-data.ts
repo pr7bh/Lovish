@@ -169,8 +169,8 @@ export const blogPosts: BlogPost[] = [
     readTime: "4 min read",
     date: "2024-11-15",
     isDraft: false,
-    image: "/images/blog-dry-needling.jpg",
-    imageAlt: "Chiropractor performing spinal adjustment and manual therapy",
+    image: "/images/services/dry-needling.jpg",
+    imageAlt: "Physiotherapist inserting dry needling needles into a patient's muscle tissue",
     sections: [
       {
         paragraphs: [
@@ -412,8 +412,8 @@ export const blogPosts: BlogPost[] = [
     readTime: "6 min read",
     date: "2025-01-05",
     isDraft: false,
-    image: "/images/blog-assessment.jpg",
-    imageAlt: "Athlete performing a warm-up stretch before training",
+    image: "/images/services/sports-physiotherapy.jpg",
+    imageAlt: "Physiotherapist treating a sports injury patient in a clinical setting",
     sections: [
       {
         paragraphs: [
@@ -476,8 +476,8 @@ export const blogPosts: BlogPost[] = [
     readTime: "4 min read",
     date: "2025-01-15",
     isDraft: false,
-    image: "/images/blog-dry-needling.jpg",
-    imageAlt: "Physiotherapist performing manual therapy on a patient",
+    image: "/images/services/iastm.jpg",
+    imageAlt: "Physiotherapist using IASTM instrument on a patient's soft tissue",
     sections: [
       {
         paragraphs: [
@@ -529,7 +529,7 @@ export const blogPosts: BlogPost[] = [
     readTime: "7 min read",
     date: "2025-01-25",
     isDraft: false,
-    image: "/images/blog-back-exercises.jpg",
+    image: "/images/services/neurological-rehabilitation.jpg",
     imageAlt: "Physiotherapist guiding a patient through neurological rehabilitation exercises",
     sections: [
       {
