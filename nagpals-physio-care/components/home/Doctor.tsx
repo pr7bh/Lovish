@@ -7,12 +7,12 @@ const highlights = [
   {
     icon: GraduationCap,
     label: "Qualification",
-    value: "Physiotherapist (PT), Yamuna Nagar, Haryana",
+    value: "BPT (Gold Medalist), PGIMS Rohtak",
   },
   {
     icon: Award,
     label: "Advanced Techniques",
-    value: "Dry Needling · Cupping Therapy · IASTM · Chiropractic",
+    value: "Dry Needling · Cupping Therapy · IASTM · Chiropractic · Kinesio Taping",
   },
   {
     icon: Stethoscope,

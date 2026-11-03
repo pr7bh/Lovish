@@ -17,8 +17,8 @@ export const metadata: Metadata = meta({
 });
 
 const credentials = [
-  { icon: GraduationCap, label: "Qualification", value: "Physiotherapist (PT) · Yamuna Nagar, Haryana, India" },
-  { icon: Award, label: "Advanced Techniques", value: "Dry Needling · Cupping Therapy (Wet, Steam, Fire, Moxibustion) · IASTM · Chiropractic Treatment · Hijamah Therapy" },
+  { icon: GraduationCap, label: "Qualification", value: "BPT (Gold Medalist), PGIMS Rohtak" },
+  { icon: Award, label: "Advanced Techniques", value: "Dry Needling · Cupping Therapy (Wet, Steam, Fire, Moxibustion) · IASTM · Chiropractic Treatment · Hijamah Therapy · Kinesio Taping" },
   { icon: Stethoscope, label: "Specializations", value: "Sports & Orthopedic Rehab · Neurological Physiotherapy · Gynecological Physiotherapy · Pediatric Rehab · Post-Surgical Care (TKR & ACL)" },
   { icon: Heart, label: "Google Rating", value: "5.0 ★ — 52 patient reviews on Google" },
 ];
@@ -103,9 +103,9 @@ export default function AboutPage() {
                   <p>
                     In addition to core physiotherapy, Dr. Nagpal is trained in advanced
                     techniques including dry needling, IASTM (instrument-assisted soft
-                    tissue mobilization), cupping therapy, and chiropractic treatment —
-                    allowing him to tailor each treatment plan to the individual rather
-                    than applying a one-size approach.
+                    tissue mobilization), cupping therapy, chiropractic treatment, and
+                    kinesio taping — allowing him to tailor each treatment plan to the
+                    individual rather than applying a one-size approach.
                   </p>
                 </div>
               </div>
