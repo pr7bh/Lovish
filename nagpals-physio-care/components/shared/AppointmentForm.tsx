@@ -387,25 +387,27 @@ export function AppointmentForm() {
 
       {/* Date + Time */}
       <div className="grid sm:grid-cols-2 gap-5">
-        <div className="min-w-0">
+        <div className="min-w-0 overflow-hidden">
           <label htmlFor="appt-date" className="block text-xs font-sans font-semibold text-muted-text uppercase tracking-widest mb-2">
             Preferred Date <span className="text-gold" aria-hidden="true">*</span>
           </label>
-          <input
-            id="appt-date"
-            type="date"
-            min={today}
-            aria-required="true"
-            aria-describedby={errors.date ? "appt-date-error" : undefined}
-            value={form.date}
-            onChange={(e) => setField("date", e.target.value)}
-            className={cn(
-              inputBase,
-              "max-w-full",
-              errors.date ? inputError : inputNormal,
-              form.date === "" ? "text-muted-text/50" : "text-rich-black"
-            )}
-          />
+          <div className="overflow-hidden rounded-sm">
+            <input
+              id="appt-date"
+              type="date"
+              min={today}
+              aria-required="true"
+              aria-describedby={errors.date ? "appt-date-error" : undefined}
+              value={form.date}
+              onChange={(e) => setField("date", e.target.value)}
+              className={cn(
+                inputBase,
+                "min-w-0",
+                errors.date ? inputError : inputNormal,
+                form.date === "" ? "text-muted-text/50" : "text-rich-black"
+              )}
+            />
+          </div>
           {errors.date && (
             <p id="appt-date-error" className="mt-1.5 text-xs text-red-500" role="alert">{errors.date}</p>
           )}
