@@ -51,6 +51,9 @@ export const metadata: Metadata = {
     description:
       "Expert physiotherapy clinic in Yamuna Nagar, Haryana. Dr. Lovish Nagpal (BPT Gold Medalist) — pain relief, sports rehab, post-surgical recovery.",
   },
+  verification: {
+    google: "todQ74XVPamLodbcXO_Z9k044SgYvubjYMqyP4h3CZg",
+  },
   robots: {
     index: true,
     follow: true,
