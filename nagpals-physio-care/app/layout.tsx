@@ -15,22 +15,25 @@ const cormorant = Cormorant_Garamond({
   display: "swap",
 });
 
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? "https://nagpalsphysiocare.vercel.app";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://nagpalsphysiocare.com"),
+  metadataBase: new URL(BASE_URL),
   title: {
     default: "Nagpal's Physio Care — Pain Relief. Rehabilitation. Mobility Care.",
     template: "%s | Nagpal's Physio Care",
   },
   description:
-    "Expert physiotherapy and rehabilitation services by Dr. Lovish Nagpal. Personalized treatment plans for pain relief, sports injuries, post-surgical recovery, and improved mobility.",
+    "Nagpal's Physio Care — expert physiotherapy clinic in Yamuna Nagar, Haryana. Dr. Lovish Nagpal (BPT Gold Medalist, PGIMS Rohtak) provides personalized treatment for pain relief, sports rehabilitation, post-surgical recovery, and mobility care.",
   keywords: [
-    "physiotherapy",
-    "physiotherapist",
-    "rehabilitation",
-    "pain relief",
-    "sports injury",
-    "Dr. Lovish Nagpal",
+    "physiotherapy Yamuna Nagar",
+    "physiotherapist Yamuna Nagar",
     "Nagpal's Physio Care",
+    "Dr. Lovish Nagpal",
+    "physiotherapy clinic Haryana",
+    "sports rehabilitation",
+    "pain relief physiotherapy",
+    "post surgical rehabilitation",
     "manual therapy",
     "mobility care",
   ],
@@ -38,12 +41,26 @@ export const metadata: Metadata = {
     type: "website",
     title: "Nagpal's Physio Care — Pain Relief. Rehabilitation. Mobility Care.",
     description:
-      "Expert physiotherapy and rehabilitation services by Dr. Lovish Nagpal.",
+      "Expert physiotherapy clinic in Yamuna Nagar, Haryana. Dr. Lovish Nagpal (BPT Gold Medalist) — pain relief, sports rehab, post-surgical recovery.",
     siteName: "Nagpal's Physio Care",
+    url: BASE_URL,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Nagpal's Physio Care — Pain Relief. Rehabilitation. Mobility Care.",
+    description:
+      "Expert physiotherapy clinic in Yamuna Nagar, Haryana. Dr. Lovish Nagpal (BPT Gold Medalist) — pain relief, sports rehab, post-surgical recovery.",
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
   },
 };
 
