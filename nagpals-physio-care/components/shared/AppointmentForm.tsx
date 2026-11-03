@@ -387,7 +387,7 @@ export function AppointmentForm() {
 
       {/* Date + Time */}
       <div className="grid sm:grid-cols-2 gap-5">
-        <div>
+        <div className="min-w-0">
           <label htmlFor="appt-date" className="block text-xs font-sans font-semibold text-muted-text uppercase tracking-widest mb-2">
             Preferred Date <span className="text-gold" aria-hidden="true">*</span>
           </label>
@@ -401,6 +401,7 @@ export function AppointmentForm() {
             onChange={(e) => setField("date", e.target.value)}
             className={cn(
               inputBase,
+              "max-w-full",
               errors.date ? inputError : inputNormal,
               form.date === "" ? "text-muted-text/50" : "text-rich-black"
             )}
@@ -409,7 +410,7 @@ export function AppointmentForm() {
             <p id="appt-date-error" className="mt-1.5 text-xs text-red-500" role="alert">{errors.date}</p>
           )}
         </div>
-        <div>
+        <div className="min-w-0">
           <label htmlFor="appt-time" className="block text-xs font-sans font-semibold text-muted-text uppercase tracking-widest mb-2">
             Preferred Time <span className="text-gold" aria-hidden="true">*</span>
           </label>
