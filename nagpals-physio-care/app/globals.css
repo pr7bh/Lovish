@@ -141,23 +141,23 @@
 /* Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #B08B4F1A transparent;
+  scrollbar-color: #B08B4F99 transparent;
 }
 
 /* WebKit (Chrome, Safari, Edge) */
 ::-webkit-scrollbar {
-  width: 1px;
-  height: 1px;
+  width: 4px;
+  height: 4px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #B08B4F33;
+  background: #B08B4F99;
   border-radius: 999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #B08B4F66;
+  background: #B08B4F;
 }
 ::-webkit-scrollbar-corner {
   background: transparent;
