@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     template: "%s | Nagpal's Physio Care",
   },
   description:
-    "Nagpal's Physio Care — expert physiotherapy clinic in Yamuna Nagar, Haryana. Dr. Lovish Nagpal (BPT Gold Medalist, PGIMS Rohtak) provides personalized treatment for pain relief, sports rehabilitation, post-surgical recovery, and mobility care.",
+    "Expert physiotherapy in Yamuna Nagar, Haryana. Dr. Lovish Nagpal (BPT Gold Medalist) treats pain, sports injuries & post-surgical recovery. Rated 5.0★ on Google. Book today.",
   keywords: [
     "physiotherapy Yamuna Nagar",
     "physiotherapist Yamuna Nagar",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     type: "website",
     title: "Nagpal's Physio Care — Pain Relief. Rehabilitation. Mobility Care.",
     description:
-      "Expert physiotherapy clinic in Yamuna Nagar, Haryana. Dr. Lovish Nagpal (BPT Gold Medalist) — pain relief, sports rehab, post-surgical recovery.",
+      "Expert physiotherapy in Yamuna Nagar, Haryana. Dr. Lovish Nagpal (BPT Gold Medalist) treats pain, sports injuries & post-surgical recovery. Rated 5.0★ on Google.",
     siteName: "Nagpal's Physio Care",
     url: BASE_URL,
   },
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Nagpal's Physio Care — Pain Relief. Rehabilitation. Mobility Care.",
     description:
-      "Expert physiotherapy clinic in Yamuna Nagar, Haryana. Dr. Lovish Nagpal (BPT Gold Medalist) — pain relief, sports rehab, post-surgical recovery.",
+      "Expert physiotherapy in Yamuna Nagar, Haryana. Dr. Lovish Nagpal (BPT Gold Medalist) treats pain, sports injuries & post-surgical recovery. Rated 5.0★ on Google.",
   },
   verification: {
     google: "todQ74XVPamLodbcXO_Z9k044SgYvubjYMqyP4h3CZg",

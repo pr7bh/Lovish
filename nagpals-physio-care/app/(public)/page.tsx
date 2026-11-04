@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     absolute: "Nagpal's Physio Care — Physiotherapy Clinic in Yamuna Nagar, Haryana",
   },
   description:
-    "Nagpal's Physio Care — expert physiotherapy clinic in Yamuna Nagar, Haryana. Dr. Lovish Nagpal (BPT Gold Medalist, PGIMS Rohtak) specialises in pain relief, sports rehabilitation, post-surgical recovery and mobility care. Rated 5.0 on Google.",
+    "Expert physiotherapy in Yamuna Nagar, Haryana. Dr. Lovish Nagpal (BPT Gold Medalist) treats pain, sports injuries & post-surgical recovery. Rated 5.0★ on Google. Book today.",
   alternates: {
     canonical: process.env.NEXT_PUBLIC_BASE_URL ?? "https://nagpalsphysiocare.vercel.app",
   },
